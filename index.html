@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production Tower Defense (本番環境防衛戦) - GitHub Deployable Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Top HUD Navigation -->
+    <header class="header-bar">
+        <div class="logo-section">
+            <span class="logo-badge">CI/CD</span>
+            <h1 class="game-title">PRODUCTION <span>TOWER DEFENSE</span></h1>
+        </div>
+
+        <div class="hud-metrics">
+            <div class="metric-item sla-container">
+                <div class="metric-label">Uptime SLA</div>
+                <div class="metric-val" id="hud-sla">100.0%</div>
+                <div class="sla-progress-bg">
+                    <div class="sla-bar sla-healthy" id="hud-sla-bar"></div>
+                </div>
+            </div>
+
+            <div class="metric-item">
+                <div class="metric-label">Compute Budget</div>
+                <div class="metric-val" id="hud-credits" style="color: #38bdf8;">$250</div>
+            </div>
+
+            <div class="metric-item">
+                <div class="metric-label">Sprint Wave</div>
+                <div class="metric-val" id="hud-wave" style="color: #facc15;">1 / 7</div>
+            </div>
+
+            <div class="metric-item">
+                <div class="metric-label">Threats In Pipeline</div>
+                <div class="metric-val" id="hud-enemies" style="color: #f87171;">0</div>
+            </div>
+        </div>
+
+        <div class="controls-group">
+            <button class="btn-ctrl speed-btn active" data-speed="1">1x</button>
+            <button class="btn-ctrl speed-btn" data-speed="2">2x</button>
+            <button class="btn-ctrl speed-btn" data-speed="3">3x</button>
+            <button class="btn-ctrl" id="btn-pause">⏸ PAUSE</button>
+            <button class="btn-ctrl" id="btn-mute">🔊 SOUND</button>
+        </div>
+    </header>
+
+    <!-- Main Game Arena -->
+    <main class="main-layout">
+        <!-- Canvas Stage -->
+        <div class="canvas-wrapper">
+            <canvas id="game-canvas"></canvas>
+        </div>
+
+        <!-- Bottom Control Dashboard -->
+        <div class="bottom-panel">
+            <!-- 1. Deployment Modules (Tower Shop) & Emergency Skills -->
+            <div class="panel-box">
+                <div class="panel-header">
+                    <span>Deploy CI Modules</span>
+                    <span style="font-size: 9px; color: #64748b;">Keys [1-5]</span>
+                </div>
+                <div class="tower-shop-grid" id="tower-shop"></div>
+
+                <div class="skills-section">
+                    <div class="panel-header" style="margin-bottom: 6px;">
+                        <span>Emergency Protocols</span>
+                        <span style="font-size: 9px; color: #64748b;">Keys [R, H, B]</span>
+                    </div>
+                    <div class="skills-list" id="skills-container"></div>
+                </div>
+            </div>
+
+            <!-- 2. Live Terminal Logs -->
+            <div class="panel-box">
+                <div class="panel-header">
+                    <span>Live Pipeline Telemetry</span>
+                    <span style="color: #22c55e;">● STREAMING</span>
+                </div>
+                <div class="terminal-container" id="terminal-logs"></div>
+            </div>
+
+            <!-- 3. Module Inspector / Upgrade -->
+            <div class="panel-box" id="inspector-panel"></div>
+        </div>
+    </main>
+
+    <!-- Modal Dialog (Alerts, Wave Start, Victory, Defeat) -->
+    <div class="modal-overlay" id="game-modal">
+        <div class="modal-window">
+            <h2 class="modal-title" id="modal-title">MISSION BRIEFING</h2>
+            <div class="modal-body" id="modal-body"></div>
+            <button class="modal-btn" id="modal-btn">ACKNOWLEDGE ➔</button>
+        </div>
+    </div>
+
+    <!-- Game Scripts -->
+    <script src="js/audio.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/entities.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
